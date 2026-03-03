@@ -21,7 +21,7 @@ public class OOPSBannerApp {
         }
     }
 
-    // Create character patterns (7-line style from feature branch)
+    // Create character patterns
     public static CharacterPatternMap[] createCharacterPatternMaps() {
 
         return new CharacterPatternMap[] {
@@ -72,12 +72,6 @@ public class OOPSBannerApp {
     public static String[] getCharacterPattern(char ch, CharacterPatternMap[] maps) {
         for (CharacterPatternMap map : maps) {
             if (map.getCharacter() == ch) {
-                return map.getPattern();
-            }
-        }
-        // Default to space if character not found
-        for (CharacterPatternMap map : maps) {
-            if (map.getCharacter() == ' ') {
                 return map.getPattern();
             }
         }
