@@ -1,5 +1,8 @@
+import java.util.*;
+
 public class OOPSBannerApp {
 
+    // OOP representation of character pattern
     static class CharacterPatternMap {
         private char character;
         private String[] pattern;
@@ -18,50 +21,61 @@ public class OOPSBannerApp {
         }
     }
 
+    // Create character patterns (7-line style from feature branch)
     public static CharacterPatternMap[] createCharacterPatternMaps() {
-        CharacterPatternMap[] maps = new CharacterPatternMap[4];
 
-        maps[0] = new CharacterPatternMap('O', new String[]{
-                " ***** ",
-                "*     *",
-                "*     *",
-                "*     *",
-                " ***** "
-        });
+        return new CharacterPatternMap[] {
 
-        maps[1] = new CharacterPatternMap('P', new String[]{
-                "****** ",
-                "*     *",
-                "****** ",
-                "*      ",
-                "*      "
-        });
+            new CharacterPatternMap('O', new String[]{
+                    "  ***  ",
+                    " ** ** ",
+                    " ** ** ",
+                    " ** ** ",
+                    " ** ** ",
+                    " ** ** ",
+                    "  ***  "
+            }),
 
-        maps[2] = new CharacterPatternMap('S', new String[]{
-                " ***** ",
-                "*      ",
-                " ***** ",
-                "      *",
-                " ***** "
-        });
+            new CharacterPatternMap('P', new String[]{
+                    " ***** ",
+                    " ** ** ",
+                    " ** ** ",
+                    " ***** ",
+                    " **    ",
+                    " **    ",
+                    " **    "
+            }),
 
-        maps[3] = new CharacterPatternMap(' ', new String[]{
-                "       ",
-                "       ",
-                "       ",
-                "       ",
-                "       "
-        });
+            new CharacterPatternMap('S', new String[]{
+                    "  **** ",
+                    " **    ",
+                    " **    ",
+                    "  ***  ",
+                    "    ** ",
+                    "    ** ",
+                    " ****  "
+            }),
 
-        return maps;
+            new CharacterPatternMap(' ', new String[]{
+                    "       ",
+                    "       ",
+                    "       ",
+                    "       ",
+                    "       ",
+                    "       ",
+                    "       "
+            })
+        };
     }
 
+    // Get pattern for a character
     public static String[] getCharacterPattern(char ch, CharacterPatternMap[] maps) {
         for (CharacterPatternMap map : maps) {
             if (map.getCharacter() == ch) {
                 return map.getPattern();
             }
         }
+        // Default to space if character not found
         for (CharacterPatternMap map : maps) {
             if (map.getCharacter() == ' ') {
                 return map.getPattern();
@@ -70,8 +84,12 @@ public class OOPSBannerApp {
         return new String[0];
     }
 
+    // Print banner message
     public static void printMessage(String message, CharacterPatternMap[] maps) {
-        int height = 5;
+
+        if (maps.length == 0) return;
+
+        int height = maps[0].getPattern().length;
 
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < message.length(); j++) {
@@ -83,6 +101,7 @@ public class OOPSBannerApp {
     }
 
     public static void main(String[] args) {
+
         CharacterPatternMap[] maps = createCharacterPatternMaps();
         String message = "OOPS";
         printMessage(message, maps);
